@@ -25,3 +25,8 @@ Practical assignments of Introduction to Machine Learning course at TAU
 - Create data set of 2D points classified by a circle.
 - Explore the SVM model with different kernels (linear, polynomial, RBF) and compare different parameters (coef0, gamma)
 - Add some noise to the labels and see how the models behave
+
+### hw5 - Training a Neural Network on the MNIST dataset using Back-Propagation 
+- Implement the back-prop algorithm for the update of SGD with mini-batches
+- Train one-hidden layer neural netwrk on the dataset
+- Explore different learning rates for SGD
