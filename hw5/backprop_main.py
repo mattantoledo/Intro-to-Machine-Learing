@@ -14,7 +14,7 @@ def a():
 
     net.SGD(training_data, epochs=30, mini_batch_size=10, learning_rate=0.1, test_data=test_data)
 
-# a()
+a()
 
 
 def b():
