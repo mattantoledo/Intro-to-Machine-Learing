@@ -68,4 +68,4 @@ Practical assignments of Introduction to Machine Learning course at TAU
 ![](https://github.com/mattantoledo/Intro-to-Machine-Learning/blob/master/hw6/plots/b.png "Graph 6.1")
 ![](https://github.com/mattantoledo/Intro-to-Machine-Learning/blob/master/hw6/plots/c10.png "Graph 6.2")
 ![](https://github.com/mattantoledo/Intro-to-Machine-Learning/blob/master/hw6/plots/c50.png "Graph 6.3")
-![](https://github.com/mattantoledo/Intro-to-Machine-Learning/blob/master/hw6/plots/c_k_values.png "Graph 6.3")
+![](https://github.com/mattantoledo/Intro-to-Machine-Learning/blob/master/hw6/plots/c_k_values_graph.png "Graph 6.3")
