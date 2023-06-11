@@ -1,3 +1,4 @@
+import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_lfw_people
 
@@ -52,6 +53,73 @@ def PCA(X, k):
 	  		of the covariance matrix.
 	  S - k largest eigenvalues of the covariance matrix. vector of dimension (k, 1)
 	"""
-	U = None
-	S = None
+	X -= np.mean(X, axis=0)
+	C = np.cov(X, rowvar=False)
+
+	u, sigma, vt = np.linalg.svd(C, full_matrices=False)
+	U = vt[0:k, :]
+	S = sigma[0:k]
 	return U, S
+
+
+def b():
+	selected_images, h, w = get_pictures_by_name()
+	X = np.array(selected_images)[:,:,0]
+
+	U, S = PCA(X, k=10)
+	fig = plt.figure(figsize=(10, 6))
+
+	for i in range(U.shape[0]):
+		fig.add_subplot(2, 5, i+1)
+		plt.imshow(U[i - 1].reshape((h, w)), cmap=plt.cm.gray)
+		plt.title('vector:' + str(i), size=12)
+	plt.show()
+
+
+b()
+
+
+def c():
+	selected_images, h, w = get_pictures_by_name()
+	X = np.array(selected_images)[:, :, 0]
+
+	k_values = [1,5,10,30,50,100]
+
+	sum_l2_distances = []
+
+	for k in k_values:
+
+		U, S = PCA(X, k)
+
+		X_reduced = X @ U.T
+		X_restored = X_reduced @ U
+
+		X_restored += np.mean(X, axis=0)
+
+		random_indices = np.random.choice(len(selected_images), size=5, replace=False)
+		curr_sum_distances = 0
+
+		fig = plt.figure(figsize=(4, 8))
+		j = 0
+		for i in random_indices:
+			fig.add_subplot(5, 2, 2 * j + 1)
+			plt.imshow(X[i].reshape((h, w)), cmap=plt.cm.gray)
+			fig.add_subplot(5, 2, 2 * j + 2)
+			plt.imshow(X_restored[i].reshape((h, w)), cmap=plt.cm.gray)
+
+			j += 1
+			l2_distance = np.linalg.norm(X[i] - X_restored[i])
+			curr_sum_distances += l2_distance
+
+		sum_l2_distances.append(curr_sum_distances)
+		plt.suptitle('k: ' + str(k) + ',   original : transformed')
+		plt.show()
+
+	plt.plot(k_values, sum_l2_distances, marker='o')
+	plt.xlabel('k')
+	plt.ylabel('Sum of ℓ2 Distances')
+	plt.title('Sum of ℓ2 Distances for Different k Values')
+	plt.show()
+
+
+c()
